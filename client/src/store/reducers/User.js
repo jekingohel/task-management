@@ -5,16 +5,18 @@ const container = {}
 
 const defaultState = function () {
   return {
-    id: null,
-    first_name: null,
-    last_name: null,
-    full_name: null,
+    _id: null,
+    name: null,
     email: null,
-    has_password: true,
-    is_linked_to_google: false,
-    is_linked_to_facebook: false,
-    email_verified: false
-    // "is_linked_to_apple": false
+    verification: null,
+    city: null,
+    phone: null,
+    urlTwitter: null,
+    urlGitHub: null,
+    createdAt: null,
+    updatedAt: null,
+    role: null,
+    verified: false
   }
 }
 

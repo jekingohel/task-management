@@ -8,9 +8,14 @@ const Auth = (function () {
   const ret = {}
 
   let user_id = null
+  let token = null
 
   ret.setUserID = (value) => {
     user_id = value
+  }
+
+  ret.setUserToken = (value) => {
+    token = value
   }
 
   ret.getUserID = () => {

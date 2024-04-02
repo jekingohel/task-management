@@ -49,7 +49,7 @@ const ForgottenPasswordModal = function ({ ngn }) {
           <div className="relative" onClick={keepModalOpen}>
             <div className="flex justify-between items-center mb-5">
               <h3
-                className="text-3xl font-bold"
+                className="text-2xl font-semibold tracking-tight"
                 id="forgottenPasswordModalLabel"
               >
                 Reset password

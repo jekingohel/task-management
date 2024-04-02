@@ -14,13 +14,16 @@ const {
   resetPassword,
   getRefreshToken,
   login,
-  roleAuthorization
+  roleAuthorization,
+  me,
+  verifyForgotPasswordToken
 } = require('../controllers/auth')
 
 const {
   validateRegister,
   validateVerify,
   validateForgotPassword,
+  validateForgotPasswordToken,
   validateResetPassword,
   validateLogin
 } = require('../controllers/auth/validators')
@@ -42,7 +45,22 @@ router.post('/verify', trimRequest.all, validateVerify, verify)
 /*
  * Forgot password route
  */
-router.post('/forgot', trimRequest.all, validateForgotPassword, forgotPassword)
+router.post(
+  '/password-resets',
+  trimRequest.all,
+  validateForgotPassword,
+  forgotPassword
+)
+
+/*
+ * Verify Forgot password token route
+ */
+router.get(
+  '/password-resets/:token',
+  trimRequest.all,
+  validateForgotPasswordToken,
+  verifyForgotPasswordToken
+)
 
 /*
  * Reset password route
@@ -64,5 +82,16 @@ router.get(
  * Login route
  */
 router.post('/login', trimRequest.all, validateLogin, login)
+
+/*
+ * Get logged-in user details
+ */
+router.get(
+  '/me',
+  requireAuth,
+  roleAuthorization(['user', 'admin']),
+  trimRequest.all,
+  me
+)
 
 module.exports = router

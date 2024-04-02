@@ -12,31 +12,25 @@ const ResetPasswordSuccess = function () {
   }
 
   return (
-    <div className="container-fluid successfully-page">
-      <div className="container">
-        <div className="page-outline">
-          <SiteLogo />
-
-          <div className="form-box">
-            <div className="box-content">
-              <IconTick />
-
-              <h2>You've updated your password!</h2>
-
-              <p className="text-muted">
-                Now you can sign in to your ClipFlip account
-              </p>
-
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={onClickHandler}
-              >
-                Sign In
-              </button>
-            </div>
-          </div>
+    <div className="flex min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm text-center">
+        <SiteLogo />
+        <div className="flex justify-center mt-5">
+          <IconTick />
         </div>
+        <h2 className="text-2xl font-semibold tracking-tight">
+          You've updated your password!
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          Now you can sign in to your account
+        </p>
+        <button
+          type="button"
+          className="mt-8 w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2"
+          onClick={onClickHandler}
+        >
+          Sign In
+        </button>
       </div>
     </div>
   )

@@ -7,7 +7,7 @@ const ForgottenPassword = function ({ ngn }) {
   return (
     <button
       type="button"
-      className="font-semibold text-indigo-600 hover:text-indigo-500"
+      className="font-semibold text-primary hover:opacity-85"
       onClick={onClickHandler}
     >
       Forgot password?

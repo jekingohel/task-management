@@ -5,6 +5,8 @@ const { register } = require('./register')
 const { resetPassword } = require('./resetPassword')
 const { roleAuthorization } = require('./roleAuthorization')
 const { verify } = require('./verify')
+const { me } = require('./me')
+const { verifyForgotPasswordToken } = require('./verifyForgotPasswordToken')
 
 module.exports = {
   forgotPassword,
@@ -13,5 +15,7 @@ module.exports = {
   register,
   resetPassword,
   roleAuthorization,
-  verify
+  verify,
+  me,
+  verifyForgotPasswordToken
 }

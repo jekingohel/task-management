@@ -135,10 +135,10 @@ const Form = function ({ requestToken }) {
 
     // api request
     Comm.request({
-      url: Uri.usersID({ id: userData.current.user_id }),
-      method: "patch",
+      url: Uri.reset(),
+      method: "post",
       data: {
-        password_reset_token: requestToken,
+        id: requestToken,
         password: passwordValue
       }
     })
@@ -147,44 +147,56 @@ const Form = function ({ requestToken }) {
         navigate(Uri.resetPasswordSuccess(), { replace: true })
       })
       .catch((error) => {
-        // console.dir(error)
-        if (error.response?.data?.errors?.password) {
-          form.current.password_confirm.showErrorMessage(
-            error.response.data.errors.password[0]
-          )
-          form.current.submit.setEnabled()
-        } else if (error.response?.data?.message) {
-          form.current.password_confirm.showErrorMessage(
-            error.response.data.message
-          )
-          form.current.submit.setEnabled()
+        console.log(error)
+        if (
+          error.response?.data?.errors?.msg &&
+          error.response?.data?.errors?.msg.length > 0
+        ) {
+          if (
+            error.response?.data?.errors?.msg[0].msg ===
+            "PASSWORD_TOO_SHORT_MIN_5"
+          ) {
+            form.current.password_confirm.showErrorMessage(
+              "Password is too short (must be at least 5 characters)"
+            )
+            form.current.submit.setEnabled()
+          }
+
+          if (
+            error.response?.data?.errors?.msg &&
+            error.response?.data?.errors?.msg === "NOT_FOUND_OR_ALREADY_USED"
+          ) {
+            form.current.password_confirm.showErrorMessage(
+              "Password reset token is invalid."
+            )
+            form.current.submit.setEnabled()
+          }
         }
       })
-      .then((response) => {
-        //console.log(response)
-        navigate(Uri.resetPasswordSuccess())
-      })
-      .catch((error) => {
-        console.dir(error)
-        if (error.response?.data?.errors?.password) {
-          form.current.password_confirm.showErrorMessage(
-            error.response.data.errors.password[0]
-          )
-          form.current.submit.setEnabled()
-        } else if (error.response?.data?.message) {
-          form.current.password_confirm.showErrorMessage(
-            error.response.data.message
-          )
-          form.current.submit.setEnabled()
-        }
-      })
+    // .then((response) => {
+    //   //console.log(response)
+    //   //navigate(Uri.resetPasswordSuccess())
+    // })
+    // .catch((error) => {
+    //   if (error.response?.data?.errors?.password) {
+    //     form.current.password_confirm.showErrorMessage(
+    //       error.response.data.errors.password[0]
+    //     )
+    //     form.current.submit.setEnabled()
+    //   } else if (error.response?.data?.message) {
+    //     form.current.password_confirm.showErrorMessage(
+    //       error.response.data.message
+    //     )
+    //     form.current.submit.setEnabled()
+    //   }
+    // })
   }
 
   return Signed ? (
     <Navigate to={Uri.u()} replace={true} />
   ) : (
-    <form onSubmit={onSubmitHandler}>
-      <div className="mb-3">
+    <form className="space-y-5" onSubmit={onSubmitHandler}>
+      <div>
         <FormPassword
           form={form.current.password}
           label="Enter new password"

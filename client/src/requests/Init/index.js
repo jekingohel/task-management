@@ -5,6 +5,7 @@ import Log from "utils/Log"
 import GetUser from "requests/GetUser"
 
 import { RequestsReady, UserSetData } from "store/actions"
+import GetAuthUser from "requests/GetAuthUser"
 
 const Init = async function (params) {
   Log.req("Init()")
@@ -22,9 +23,8 @@ const Init = async function (params) {
   // --------------------------------------------------------------------------------
 
   // *** User Personal Info
-  await GetUser()
+  await GetAuthUser()
     .then((res) => {
-      // console.dir(res)
       Store.dispatch(UserSetData(res.data))
     })
     .catch((err) => {

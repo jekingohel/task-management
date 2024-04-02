@@ -1,6 +1,5 @@
 import { useState } from "react"
 
-import CloseButton from "components/Authentication/ForgottenPasswordModal/CloseButton"
 import SubmitButton from "components/Authentication/ForgottenPasswordModal/SubmitButton"
 
 const ModalFooter = function ({ state, hideModal }) {
@@ -13,11 +12,7 @@ const ModalFooter = function ({ state, hideModal }) {
     setShowSuccess(false)
   }
 
-  return showSuccess ? (
-    <CloseButton hideModal={hideModal} />
-  ) : (
-    <SubmitButton state={state} />
-  )
+  return !showSuccess ? <SubmitButton state={state} /> : null
 }
 
 export default ModalFooter

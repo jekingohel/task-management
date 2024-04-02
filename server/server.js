@@ -59,7 +59,13 @@ i18n.configure({
 app.use(i18n.init)
 
 // Init all other stuff
-app.use(cors())
+
+const corsOptions = {
+  origin: process.env.ALLOWED_ORIGIN || 'http://localhost:3000', // Replace with your React app's origin
+  credentials: true // Allow credentials
+}
+
+app.use(cors(corsOptions))
 app.use(passport.initialize())
 app.use(compression())
 app.use(helmet())

@@ -16,8 +16,8 @@ const FormEmail = function ({ state }) {
   )
 
   const className = hasError
-    ? "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:outline-indigo-600 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-sm is-invalid"
-    : "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:outline-indigo-600 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-sm"
+    ? "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-sm is-invalid"
+    : "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-sm"
 
   state.form.setEmailValue = (value) => {
     setEmailValue(value)
@@ -40,7 +40,7 @@ const FormEmail = function ({ state }) {
 
   return (
     <>
-      <p className="text-gray-500 text-sm mb-3">
+      <p className="text-sm text-muted-foreground mb-3">
         Enter your registered email address and we'll send you instructions on
         how to reset your password.
       </p>
@@ -60,7 +60,7 @@ const FormEmail = function ({ state }) {
             ref={ref}
           />
           {hasError && (
-            <div className="text-sm font-medium text-red-500">
+            <div className="text-sm font-medium text-red-500 mt-2">
               {errorMessage}
             </div>
           )}

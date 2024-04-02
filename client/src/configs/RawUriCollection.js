@@ -9,8 +9,6 @@ const RawUriCollection = {
   // [START] PUBLIC
   home: "/",
 
-  passwordResets: "/password-resets",
-  passwordResetsToken: "/password-resets/:token",
   resetPassword: "/reset-password",
   resetPasswordSuccess: "/reset-password/success",
 
@@ -23,11 +21,16 @@ const RawUriCollection = {
   // [START] API
 
   session: "/session",
-  sessionAuth: "/session/auth",
-  tokens: "/tokens",
-  tokensID: "/tokens/:id",
+  login: "/auth/login", // Login
+  register: "/auth/register", // Register
+  verify: "/auth/verify", // Verify
+  reset: "/auth/reset", // Reset password
+  tokens: "/auth/tokens", // Get new refresh token
   users: "/users",
-  usersID: "/users/:id"
+  usersID: "/users/:id",
+  me: "/auth/me",
+  passwordResets: "/auth/password-resets", // Forgot password
+  passwordResetsToken: "/auth/password-resets/:token"
 }
 
 export default RawUriCollection

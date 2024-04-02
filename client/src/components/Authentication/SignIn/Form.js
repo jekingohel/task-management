@@ -16,6 +16,9 @@ import Error from "components/__Shared/Error"
 import Submit from "components/__Shared/Input/Submit"
 import Password from "components/__Shared/Input/Password"
 import InputText from "components/__Shared/Input/InputText"
+import AddMinutesToTimestamp from "utils/AddMinutesToTimestamp"
+
+const MINUTES_TO_CHECK_FOR_TOKEN_REFRESH = 1440
 
 const Form = function ({ ngn }) {
   const form = useRef({
@@ -46,7 +49,7 @@ const Form = function ({ ngn }) {
 
     // api request
     Comm.request({
-      url: Uri.sessionAuth(),
+      url: Uri.login(),
       method: "post",
       data: {
         email: emailValue,
@@ -54,14 +57,22 @@ const Form = function ({ ngn }) {
       }
     })
       .then((res) => {
-        // console.dir(res)
-        if (res.data?.data?.user_id) {
-          Auth.setUserID(res.data.data.user_id)
-          Store.dispatch(AuthSetSigned())
+        if (res.status === 200) {
+          window.localStorage.setItem("user", JSON.stringify(res.data.user))
+          window.localStorage.setItem("token", JSON.stringify(res.data.token))
+          window.localStorage.setItem(
+            "tokenExpiration",
+            JSON.stringify(
+              AddMinutesToTimestamp(MINUTES_TO_CHECK_FOR_TOKEN_REFRESH)
+            )
+          )
+          if (res.data?.user._id) {
+            Auth.setUserID(res.data?.user._id)
+            Store.dispatch(AuthSetSigned())
+          }
         }
       })
       .catch((error) => {
-        // console.dir(error)
         if (error.response?.data?.errors) {
           const errors = error.response.data.errors
           if (errors.email) {
@@ -72,9 +83,12 @@ const Form = function ({ ngn }) {
             form.current.password.showErrorMessage()
             form.current.password.error.showError(errors.password[0])
           }
-        } else if (error.response?.data?.message) {
-          form.current.password.showErrorMessage()
-          form.current.password.error.showError(error.response.data.message)
+          if (error.response?.data?.errors?.msg === "USER_DOES_NOT_EXIST") {
+            form.current.password.showErrorMessage()
+            form.current.password.error.showError(
+              "Incorrect email or password."
+            )
+          }
         }
         form.current.submit.setEnabled()
       })
@@ -126,7 +140,7 @@ const Form = function ({ ngn }) {
       </div>
 
       <div>
-        <Submit form={form.current.submit} value="Log In" />
+        <Submit form={form.current.submit} value="Sign In" />
       </div>
     </form>
   )
