@@ -2,10 +2,13 @@ import Store from "store"
 
 import Log from "utils/Log"
 
-import GetUser from "requests/GetUser"
-
-import { RequestsReady, UserSetData } from "store/actions"
+import {
+  ProjectsSetCollection,
+  RequestsReady,
+  UserSetData
+} from "store/actions"
 import GetAuthUser from "requests/GetAuthUser"
+import GetProjects from "requests/GetProjects"
 
 const Init = async function (params) {
   Log.req("Init()")
@@ -39,36 +42,45 @@ const Init = async function (params) {
     return
   }
 
-  if (error.code > 0) {
-    return
-  }
-
   // *** Users Tasks
 
   // --------------------------------------------------------------------------------
   // Asynchronous requests
   // --------------------------------------------------------------------------------
 
-  //   await new Promise((resolve, reject) => {
-  //     let processCounter = 0;
+  await new Promise((resolve, reject) => {
+    let processCounter = 0
 
-  //     const setupProcessCounter = function () {
-  //       processCounter++;
-  //     };
+    const setupProcessCounter = function () {
+      processCounter++
+    }
 
-  //     const processResolve = function () {
-  //       processCounter--;
-  //       if (processCounter <= 0) {
-  //         resolve();
-  //       }
-  //     };
-  //   })
-  //     .then((res) => {
-  //       // console.log(res)
-  //     })
-  //     .catch((err) => {
-  //       // console.log(err)
-  //     });
+    const processResolve = function () {
+      processCounter--
+      if (processCounter <= 0) {
+        resolve()
+      }
+    }
+
+    setupProcessCounter()
+    GetProjects()
+      .then((res) => {
+        Store.dispatch(ProjectsSetCollection(res?.data))
+      })
+      .catch((err) => {
+        // console.dir(err)
+        error = err
+      })
+      .finally(() => {
+        processResolve()
+      })
+  })
+    .then((res) => {
+      // console.log(res)
+    })
+    .catch((err) => {
+      // console.log(err)
+    })
 
   // --------------------------------------------------------------------------------
   // *** Post Setup

@@ -8,6 +8,9 @@ const RawUriCollection = {
 
   // [START] PUBLIC
   home: "/",
+  dashboard: "/u/dashboard",
+  project: "/u/project",
+  projectId: "/u/project/:id",
 
   resetPassword: "/reset-password",
   resetPasswordSuccess: "/reset-password/success",
@@ -30,7 +33,21 @@ const RawUriCollection = {
   usersID: "/users/:id",
   me: "/auth/me",
   passwordResets: "/auth/password-resets", // Forgot password
-  passwordResetsToken: "/auth/password-resets/:token"
+  passwordResetsToken: "/auth/password-resets/:token",
+
+  // Project API
+  getProjects: "/project",
+  getProject: "/project/:id",
+  createProject: "/project",
+  updateProject: "/project/:id",
+  deleteProject: "/project/:id",
+
+  // Task API
+  getTasks: "/tasks",
+  getTask: "/tasks/:id",
+  createTask: "/tasks",
+  updateTask: "/tasks/:id",
+  deleteTask: "/tasks/:id"
 }
 
 export default RawUriCollection

@@ -1,8 +1,12 @@
 import InitLoading from "components/__Shared/InitLoading"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
-import Uri from "services/Uri"
 import Req from "requests"
+import Dashboard from "./Dashboard"
+import { Sidebar } from "./__Shared"
+import { Navigate, Route, Routes } from "react-router-dom"
+
+import Uri from "services/Uri"
+import ProjectDetails from "./ProjectDetails"
 
 const UserArea = () => {
   const RequestFunc = useSelector((state) => state.Requests.func)
@@ -13,11 +17,16 @@ const UserArea = () => {
     return <InitLoading />
   }
   return (
-    <div>
-      <span>Hello World!</span>
-      <Link to={Uri.signOut()} className="btn btn-md btn-cancel ms-4">
-        Sign Out
-      </Link>
+    <div className="container flex max-w-screen-lg flex-col">
+      <div className="flex w-full data-[panel-group-direction=vertical]:flex-col h-full max-h-[800px] items-stretch">
+        <Sidebar />
+        <ProjectDetails />
+
+        <Routes>
+          <Route path={`${Uri.dashboard()}`} element={<Dashboard />} />
+          <Route path={`${Uri.project()}`} element={<ProjectDetails />} />
+        </Routes>
+      </div>
     </div>
   )
 }

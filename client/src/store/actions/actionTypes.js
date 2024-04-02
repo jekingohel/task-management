@@ -45,3 +45,20 @@ export const ACTION_SHARED_MODALS_CONFIRM_CONTENT_ACTION_SHOW =
   "ACTION_SHARED_MODALS_CONFIRM_CONTENT_ACTION_SHOW"
 export const ACTION_SHARED_MODALS_CONFIRM_CONTENT_ACTION_HIDE =
   "ACTION_SHARED_MODALS_CONFIRM_CONTENT_ACTION_HIDE"
+
+// ----------------------------------------------------------------------------------------------------
+// Projects
+// ----------------------------------------------------------------------------------------------------
+
+export const ACTION_PROJECTS_GLOBAL_RESET = "ACTION_PROJECTS_GLOBAL_RESET"
+export const ACTION_PROJECTS_SET_COLLECTION = "ACTION_PROJECTS_SET_COLLECTION"
+export const ACTION_PROJECTS_SET_FAVORITES = "ACTION_PROJECTS_SET_FAVORITES"
+export const ACTION_PROJECTS_SET_SELECTED = "ACTION_PROJECTS_SET_SELECTED"
+export const ACTION_PROJECTS_ADD_ITEM = "ACTION_PROJECTS_ADD_ITEM"
+
+// ----------------------------------------------------------------------------------------------------
+// Tasks
+// ----------------------------------------------------------------------------------------------------
+
+export const ACTION_TASKS_GLOBAL_RESET = "ACTION_TASKS_GLOBAL_RESET"
+export const ACTION_TASKS_SET_COLLECTION = "ACTION_TASKS_SET_COLLECTION"

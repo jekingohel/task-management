@@ -136,3 +136,60 @@ export const SharedGlobalReset = function (items) {
     type: actionType.ACTION_SHARED_GLOBAL_RESET
   }
 }
+
+// ----------------------------------------------------------------------------------------------------
+// Projects
+// ----------------------------------------------------------------------------------------------------
+
+export const ProjectsSetCollection = (data) => {
+  return {
+    type: actionType.ACTION_PROJECTS_SET_COLLECTION,
+    payload: { data }
+  }
+}
+
+export const ProjectsSetfavorites = (data) => {
+  return {
+    type: actionType.ACTION_PROJECTS_SET_FAVORITES,
+    payload: { data }
+  }
+}
+
+export const ProjectsSetSelected = (data) => {
+  return {
+    type: actionType.ACTION_PROJECTS_SET_SELECTED,
+    payload: { data }
+  }
+}
+
+export const ProjectsSetAddItem = (data) => {
+  return {
+    type: actionType.ACTION_PROJECTS_ADD_ITEM,
+    payload: { data }
+  }
+}
+
+export const ProjectsGlobalReset = () => {
+  return {
+    type: actionType.ACTION_PROJECTS_GLOBAL_RESET
+  }
+}
+
+// ----------------------------------------------------------------------------------------------------
+// Tasks
+// ----------------------------------------------------------------------------------------------------
+
+export const TasksSetCollection = (data) => {
+  return {
+    type: actionType.ACTION_TASKS_SET_COLLECTION,
+    payload: {
+      data
+    }
+  }
+}
+
+export const TasksGlobalReset = () => {
+  return {
+    type: actionType.ACTION_TASKS_GLOBAL_RESET
+  }
+}
