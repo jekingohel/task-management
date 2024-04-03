@@ -136,3 +136,157 @@ export const SharedGlobalReset = function (items) {
     type: actionType.ACTION_SHARED_GLOBAL_RESET
   }
 }
+
+// --------------------------------------------------------------------------------
+// Create Workspace
+// --------------------------------------------------------------------------------
+
+export const CreateWorkspaceSetRequired = () => {
+  return {
+    type: actionType.ACTION_CREATE_WORKSPACE_SET_REQUIRED
+  }
+}
+
+export const CreateWorkspaceSetNotRequired = () => {
+  return {
+    type: actionType.ACTION_CREATE_WORKSPACE_SET_NOT_REQUIRED
+  }
+}
+
+export const CreateWorkspaceSetInactive = () => {
+  return {
+    type: actionType.ACTION_CREATE_WORKSPACE_SET_INACTIVE
+  }
+}
+
+export const CreateWorkspaceSetNoInactive = () => {
+  return {
+    type: actionType.ACTION_CREATE_WORKSPACE_SET_NOT_INACTIVE
+  }
+}
+
+export const CreateWorkspaceGlobalReset = () => {
+  return {
+    type: actionType.ACTION_CREATE_WORKSPACE_GLOBAL_RESET
+  }
+}
+
+export const CreateWorkspaceSetStep = (step) => {
+  return {
+    type: actionType.ACTION_SET_WORKSPACE_STEP,
+    payload: step
+  }
+}
+
+// --------------------------------------------------------------------------------
+// Workspace - Collection
+// --------------------------------------------------------------------------------
+
+export const WSUpdateWorkspace = (item) => {
+  return {
+    type: actionType.ACTION_WS_UPDATE_WORKSPACE,
+    payload: {
+      item: item
+    }
+  }
+}
+
+export const WSUpdateCollection = (item) => {
+  return {
+    type: actionType.ACTION_WS_UPDATE_COLLECTION,
+    payload: {
+      item: item
+    }
+  }
+}
+
+export const WSSetCollection = (collection) => {
+  return {
+    type: actionType.ACTION_WS_SET_COLLECTION,
+    payload: {
+      collection: collection
+    }
+  }
+}
+
+// --------------------------------------------------------------------------------
+// Workspace - General
+// --------------------------------------------------------------------------------
+
+export const WSSetCurrentWorkspaceOwnerID = (id) => {
+  return {
+    type: actionType.ACTION_WS_SET_CURRENT_WORKSPACE_OWNER_ID,
+    payload: {
+      id: id
+    }
+  }
+}
+
+export const WSSetCurrentWorkspaceUserID = (id) => {
+  return {
+    type: actionType.ACTION_WS_SET_CURRENT_WORKSPACE_USER_ID,
+    payload: {
+      id: id
+    }
+  }
+}
+
+export const WSSetCurrentWorkspaceUserRole = (role) => {
+  return {
+    type: actionType.ACTION_WS_SET_CURRENT_WORKSPACE_USER_ROLE,
+    payload: {
+      role: role
+    }
+  }
+}
+
+export const WSSetCurrentWorkspaceID = (id) => {
+  return {
+    type: actionType.ACTION_WS_SET_CURRENT_WORKSPACE_ID,
+    payload: {
+      id: id
+    }
+  }
+}
+
+export const WSSetCurrentWorkspaceName = (name) => {
+  return {
+    type: actionType.ACTION_WS_SET_CURRENT_WORKSPACE_NAME,
+    payload: {
+      name: name
+    }
+  }
+}
+
+export const WSSetCurrentWorkspaceLogo = (logo) => {
+  return {
+    type: actionType.ACTION_WS_SET_CURRENT_WORKSPACE_LOGO,
+    payload: {
+      logo: logo
+    }
+  }
+}
+
+export const WSSetCurrentWorkspaceFavicon = (favicon) => {
+  return {
+    type: actionType.ACTION_WS_SET_CURRENT_WORKSPACE_FAVICON,
+    payload: {
+      favicon: favicon
+    }
+  }
+}
+
+export const WSSetCurrentWorkspaceTotalMembers = (total_members) => {
+  return {
+    type: actionType.ACTION_WS_SET_CURRENT_WORKSPACE_TOTAL_MEMBERS,
+    payload: {
+      total_members: total_members
+    }
+  }
+}
+
+export const WSGlobalReset = () => {
+  return {
+    type: actionType.ACTION_WS_GLOBAL_RESET
+  }
+}

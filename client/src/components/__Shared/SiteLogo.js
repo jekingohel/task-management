@@ -6,16 +6,17 @@ const SiteLogo = function () {
   const navigate = useNavigate()
 
   const logoOnClickHandler = function () {
-    navigate(Uri.uPersonal(), { replace: true })
+    navigate(Uri.uDefault(), { replace: true })
   }
 
   return (
-    <Logo
-      data-testid="have-class-logo"
-      className="logo mx-auto h-10 w-auto"
+    <div
+      className="flex flex-row gap-2 items-center cursor-pointer"
       onClick={logoOnClickHandler}
-      style={{ cursor: "pointer" }}
-    />
+    >
+      <Logo data-testid="have-class-logo" className="logo mx-auto h-6 w-auto" />
+      <span className="text-lg font-bold">Listify</span>
+    </div>
   )
 }
 

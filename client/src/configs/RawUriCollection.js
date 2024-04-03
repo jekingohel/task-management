@@ -3,8 +3,11 @@ const RawUriCollection = {
   u: "/u",
   uID: "/u/:id",
 
-  uDefault: "/u/:id/personal",
-  default: "/personal",
+  uDefault: "/u/:id/tasks",
+  default: "/tasks",
+
+  uCreateWorkspace: "/u/create-workspace",
+  createWorkspace: "/create-workspace",
 
   // [START] PUBLIC
   home: "/",
