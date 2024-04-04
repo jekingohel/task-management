@@ -7,6 +7,7 @@ import Requests from "store/reducers/Requests"
 import Shared from "store/reducers/Shared"
 import CreateWorkspace from "store/reducers/CreateWorkspace"
 import Workspace from "store/reducers/Workspace"
+import MainMenu from "store/reducers/MainMenu"
 
 const CollectionOfReducers = combineReducers({
   User: User,
@@ -15,7 +16,8 @@ const CollectionOfReducers = combineReducers({
   Requests: Requests,
   Shared: Shared,
   CreateWorkspace: CreateWorkspace,
-  Workspace: Workspace
+  Workspace: Workspace,
+  MainMenu: MainMenu
 })
 
 export default CollectionOfReducers

@@ -90,3 +90,12 @@ export const ACTION_WS_SET_CURRENT_WORKSPACE_FAVICON =
 export const ACTION_WS_SET_CURRENT_WORKSPACE_TOTAL_MEMBERS =
   "ACTION_WS_SET_CURRENT_WORKSPACE_TOTAL_MEMBERS"
 export const ACTION_WS_GLOBAL_RESET = "ACTION_WS_GLOBAL_RESET"
+
+// ----------------------------------------------------------------------------------------------------
+// Main Menu
+// ----------------------------------------------------------------------------------------------------
+
+export const ACTION_MAIN_MENU_TOGGLE_OPENED = "ACTION_MAIN_MENU_TOGGLE_OPENED"
+export const ACTION_MAIN_MENU_ACTIVE_SECTION = "ACTION_MAIN_MENU_ACTIVE_SECTION"
+export const ACTION_MAIN_MENU_GLOBAL_RESET = "ACTION_MAIN_MENU_GLOBAL_RESET"
+export const ACTION_MAIN_MENU_SET_OPENED = "ACTION_MAIN_MENU_SET_OPENED"

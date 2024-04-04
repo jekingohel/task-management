@@ -28,14 +28,13 @@ const UserMenuAdditionalItems = function ({ menuState, setMenuState }) {
 
   return (
     <>
-      <li>
-        <button className="dropdown-item" onClick={onClickHandlerSettings}>
-          Settings
-        </button>
-      </li>
-      <li>
-        <hr className="dropdown-divider" />
-      </li>
+      <button
+        className="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-accent rounded-sm focus:bg-accent focus:text-accent-foreground"
+        onClick={onClickHandlerSettings}
+      >
+        Settings
+      </button>
+      <hr className="-mx-1 my-1 h-px bg-muted" />
     </>
   )
 }

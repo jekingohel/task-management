@@ -1,4 +1,10 @@
-<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="128" height="128" rx="64" fill="#E6F3FF"/>
-    <path d="M52 49.3334C52 55.9494 57.384 61.3334 64 61.3334C70.616 61.3334 76 55.9494 76 49.3334C76 42.7174 70.616 37.3334 64 37.3334C57.384 37.3334 52 42.7174 52 49.3334ZM85.3333 88.0001H88V85.3334C88 75.0428 79.624 66.6668 69.3333 66.6668H58.6667C48.3733 66.6668 40 75.0428 40 85.3334V88.0001H42.6667H45.3333H82.6667H85.3333Z" fill="#2881E6"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>default-avatar</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="default-avatar" fill-rule="nonzero">
+            <rect id="Rectangle" fill="#EAF6EF" x="0" y="0" width="128" height="128" rx="64"></rect>
+            <path d="M52,49.3334 C52,55.9494 57.384,61.3334 64,61.3334 C70.616,61.3334 76,55.9494 76,49.3334 C76,42.7174 70.616,37.3334 64,37.3334 C57.384,37.3334 52,42.7174 52,49.3334 Z M85.3333,88.0001 L88,88.0001 L88,85.3334 C88,75.0428 79.624,66.6668 69.3333,66.6668 L58.6667,66.6668 C48.3733,66.6668 40,75.0428 40,85.3334 L40,88.0001 L42.6667,88.0001 L45.3333,88.0001 L82.6667,88.0001 L85.3333,88.0001 Z" id="Shape" fill="#16A34A"></path>
+        </g>
+    </g>
 </svg>

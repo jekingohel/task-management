@@ -290,3 +290,37 @@ export const WSGlobalReset = () => {
     type: actionType.ACTION_WS_GLOBAL_RESET
   }
 }
+
+// --------------------------------------------------------------------------------
+// Main Menu
+// --------------------------------------------------------------------------------
+
+export const MainMenuActiveSection = (value) => {
+  return {
+    type: actionType.ACTION_MAIN_MENU_ACTIVE_SECTION,
+    payload: {
+      value: value
+    }
+  }
+}
+
+export const MainMenuToggleOpened = () => {
+  return {
+    type: actionType.ACTION_MAIN_MENU_TOGGLE_OPENED
+  }
+}
+
+export const MainMenuSetOpened = (value) => {
+  return {
+    type: actionType.ACTION_MAIN_MENU_SET_OPENED,
+    payload: {
+      value: value
+    }
+  }
+}
+
+export const MainMenuGlobalReset = () => {
+  return {
+    type: actionType.ACTION_MAIN_MENU_GLOBAL_RESET
+  }
+}
