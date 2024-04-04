@@ -2,7 +2,7 @@ import Uri from "services/Uri"
 import Comm from "services/Comm"
 import Catch401 from "middlewares/Catch401"
 
-const UpdateProject = async function ({ id }) {
+const UpdateProject = async function ({ id, title }) {
   let result = {}
   let error = {
     code: 0,
@@ -11,7 +11,8 @@ const UpdateProject = async function ({ id }) {
 
   await Comm.request({
     url: Uri.updateProject({ id }),
-    method: "patch"
+    method: "patch",
+    data: { title }
   })
     .then((res) => {
       if (res.data) {

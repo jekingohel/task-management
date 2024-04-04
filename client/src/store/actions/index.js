@@ -169,6 +169,20 @@ export const ProjectsSetAddItem = (data) => {
   }
 }
 
+export const ProjectsSetUpdateItem = (data) => {
+  return {
+    type: actionType.ACTION_PROJECTS_UPDATE_ITEM,
+    payload: { data }
+  }
+}
+
+export const ProjectsSetDeleteItem = (data) => {
+  return {
+    type: actionType.ACTION_PROJECTS_DELETE_ITEM,
+    payload: { data }
+  }
+}
+
 export const ProjectsGlobalReset = () => {
   return {
     type: actionType.ACTION_PROJECTS_GLOBAL_RESET
@@ -185,6 +199,34 @@ export const TasksSetCollection = (data) => {
     payload: {
       data
     }
+  }
+}
+
+export const TasksSetSelected = (data) => {
+  return {
+    type: actionType.ACTION_TASKS_SET_SELECTED,
+    payload: { data }
+  }
+}
+
+export const TasksSetAddItem = (data) => {
+  return {
+    type: actionType.ACTION_TASKS_ADD_ITEM,
+    payload: { data }
+  }
+}
+
+export const TasksSetUpdateItem = (data) => {
+  return {
+    type: actionType.ACTION_TASKS_UPDATE_ITEM,
+    payload: { data }
+  }
+}
+
+export const TasksSetDeleteItem = (data) => {
+  return {
+    type: actionType.ACTION_TASKS_DELETE_ITEM,
+    payload: { data }
   }
 }
 

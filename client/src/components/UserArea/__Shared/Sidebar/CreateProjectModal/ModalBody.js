@@ -4,8 +4,11 @@ import ValStringMin from "utils/form/validations/ValStringMin"
 import Requests from "requests"
 import { ProjectsSetAddItem } from "store/actions"
 import Store from "store"
+import { useNavigate } from "react-router-dom"
+import Uri from "services/Uri"
 
 const ModalBody = function ({ state, hideModal }) {
+  const navigate = useNavigate()
   const onFormSubmitHandler = (ev) => {
     ev.preventDefault()
 
@@ -29,6 +32,7 @@ const ModalBody = function ({ state, hideModal }) {
         state.form.submitEnabled()
         state.form.hideSubmitLoading()
         hideModal()
+        navigate(Uri.uProjectId({ id: res?.data._id }))
       })
       .catch((err) => {
         //console.dir(err)

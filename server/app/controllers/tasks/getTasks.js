@@ -11,6 +11,12 @@ const getTasks = async (req, res) => {
     const id = await isIDGood(req.user._id)
     const query = await checkQueryString(req.query)
     query.user = id
+
+    if (req.query?.project !== 'undefined') {
+      const project = await isIDGood(req.query.project)
+      query.project = project
+    }
+
     res.status(200).json(await getItems(req, Task, query))
   } catch (error) {
     handleError(res, error)

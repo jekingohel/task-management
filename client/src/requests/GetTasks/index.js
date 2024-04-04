@@ -2,7 +2,14 @@ import Uri from "services/Uri"
 import Comm from "services/Comm"
 import Catch401 from "middlewares/Catch401"
 
-const GetTasks = async function () {
+const GetTasks = async function ({
+  project,
+  filter,
+  fields,
+  page,
+  limit,
+  sort
+}) {
   let result = {}
   let error = {
     code: 0,
@@ -10,7 +17,7 @@ const GetTasks = async function () {
   }
 
   await Comm.request({
-    url: Uri.getTasks(),
+    url: Uri.getTasks({ project, filter, fields, page, limit, sort }),
     method: "get"
   })
     .then((res) => {

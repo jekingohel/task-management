@@ -4,30 +4,30 @@ This project provides a solid foundation for building RESTful APIs using JavaScr
 
 ## Features
 
-- Multiple environment (development, production)
-- Custom email/password user system with basic security and blocking for preventing brute force attacks
-- Compressed responses
-- Secured HTTP headers
-- Cross-Origin Resource Sharing (CORS) support
-- Cache (Redis)
-- HTTP request logger in development mode
-- i18n (for sending emails in multiple languages)
-- User roles
-- Pagination
-- User profile
-- Users list for admin area
-- Login access log with IP, browser and country location (for country it looks for the header `cf-ipcountry` that CloudFlare creates when protecting your website)
-- Testing with mocha/chai for API endpoints
-- NPM scripts for cleaning and seeding the MongoDB database
-- Mailer example with Nodemailer and Mailgun
-- Ability to refresh token
-- JSON Web Tokens (JWT) for secure authentication
+*   Multiple environment (development, production)
+*   Custom email/password user system with basic security and blocking for preventing brute force attacks
+*   Compressed responses
+*   Secured HTTP headers
+*   Cross-Origin Resource Sharing (CORS) support
+*   Cache (Redis)
+*   HTTP request logger in development mode
+*   i18n (for sending emails in multiple languages)
+*   User roles
+*   Pagination
+*   User profile
+*   Users list for admin area
+*   Login access log with IP, browser and country location (for country it looks for the header `cf-ipcountry` that CloudFlare creates when protecting your website)
+*   Testing with mocha/chai for API endpoints
+*   NPM scripts for cleaning and seeding the MongoDB database
+*   Mailer example with Nodemailer and Mailgun
+*   Ability to refresh token
+*   JSON Web Tokens (JWT) for secure authentication
 
 ## Requirements
 
-- Node.js
-- MongoDB
-- Redis
+*   Node.js
+*   MongoDB
+*   Redis
 
 ### i18n
 
@@ -43,9 +43,9 @@ Three available commands: `fresh`, `clean`, and `seed`.
 npm run command
 ```
 
-- `fresh` Cleans and then seeds the database with dynamic data.
-- `clean` Cleans the database.
-- `seed` Seeds the database with dynamic data.
+*   `fresh` Cleans and then seeds the database with dynamic data.
+*   `clean` Cleans the database.
+*   `seed` Seeds the database with dynamic data.
 
 ### Running in development
 

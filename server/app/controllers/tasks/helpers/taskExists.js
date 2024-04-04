@@ -5,12 +5,13 @@ const { buildErrObject } = require('../../../middleware/utils')
  * Checks if a task already exists in database
  * @param {string} title - title of task
  */
-const taskExists = (title = '', id = '') => {
+const taskExists = (title = '', id = '', project = '') => {
   return new Promise((resolve, reject) => {
     Task.findOne(
       {
         title,
-        user: id
+        user: id,
+        project
       },
       (err, item) => {
         if (err) {

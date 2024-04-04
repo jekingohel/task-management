@@ -21,6 +21,10 @@ const TasksSchema = new mongoose.Schema(
       ref: 'users',
       required: true
     },
+    project: {
+      type: mongoose.Types.ObjectId,
+      required: true
+    },
     order: {
       type: Number,
       required: false,

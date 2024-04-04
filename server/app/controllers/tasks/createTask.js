@@ -12,9 +12,12 @@ const { taskExists } = require('./helpers')
 const createTask = async (req, res) => {
   try {
     const userId = await isIDGood(req.user._id)
+    const project = await isIDGood(req.body.project)
     const validatedData = matchedData(req)
     validatedData.user = userId
-    const doesTaskExists = await taskExists(req.title, userId)
+    validatedData.project = project
+
+    const doesTaskExists = await taskExists(req.body.title, userId, project)
     if (!doesTaskExists) {
       res.status(201).json(await createItem(validatedData, Task))
     }

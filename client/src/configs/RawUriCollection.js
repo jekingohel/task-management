@@ -8,9 +8,12 @@ const RawUriCollection = {
 
   // [START] PUBLIC
   home: "/",
-  dashboard: "/u/dashboard",
-  project: "/u/project",
-  projectId: "/u/project/:id",
+  dashboard: "/dashboard",
+  uDashboard: "/u/dashboard",
+  project: "/project",
+  uProject: "/u/project",
+  projectId: "/project/:id",
+  uProjectId: "/u/project/:id",
 
   resetPassword: "/reset-password",
   resetPasswordSuccess: "/reset-password/success",
@@ -43,7 +46,8 @@ const RawUriCollection = {
   deleteProject: "/project/:id",
 
   // Task API
-  getTasks: "/tasks",
+  getTasks:
+    "/tasks?filter=:filter&fields=:fields&page=:page&limit=:limit&sort=:sort&project=:project",
   getTask: "/tasks/:id",
   createTask: "/tasks",
   updateTask: "/tasks/:id",

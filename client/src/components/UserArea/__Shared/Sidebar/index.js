@@ -1,37 +1,27 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Uri from "services/Uri"
 import CreateProjectModal from "./CreateProjectModal"
 
 const ListItem = ({ title, data = [] }) => {
-  const handelProject = (data) => {
-    Uri.project(data._id)
-  }
+  const router = useLocation()
+  const currentURL = router.pathname
+
   return (
     <div className="mb-5">
       <h4 className="my-2 text-lg font-semibold">{title}</h4>
       <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
         {data?.map((i, index) => {
-          const selected = i._id === "660ba9f3f671134124b1983b"
+          const selected = i._id === currentURL.split("/").pop()
           return (
             <Link
               key={index}
-              to={Uri.projectId({id: i._id})}
-              className={`inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${selected && "bg-primary"} text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3 dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white justify-start`}
+              to={Uri.uProjectId({ id: i._id })}
+              className={`inline-flex items-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${selected && "bg-primary text-primary-foreground"}  hover:bg-primary/90 h-9 rounded-md px-3 dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white justify-start hover:text-primary-foreground text-gray-600`}
             >
-              {/* <button
-                type="button"
-                className="btn btn-primary btn-block"
-                onClick={() => handelProject(i)}
-              > */}
-                <span className="mx-2 text-sm font-semibold text-gray-600">
-                  #
-                </span>
-                <span className="text-sm font-semibold text-gray-600">
-                  {i?.title}
-                </span>
-              {/* </button> */}
+              <span className="mx-2 text-sm font-semibold ">#</span>
+              <span className="text-sm font-semibold">{i?.title}</span>
             </Link>
           )
         })}
