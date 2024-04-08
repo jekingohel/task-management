@@ -9,7 +9,7 @@ const defaultState = function () {
   return {
     //required: DefaultToFalse(),
     required: true,
-    step: 1,
+    step: 2,
     inActiveWS: DefaultToFalse()
   }
 }

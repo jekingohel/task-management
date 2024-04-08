@@ -11,10 +11,10 @@ const SiteLogo = function () {
 
   return (
     <div
-      className="flex flex-row gap-2 items-center cursor-pointer"
+      className="flex flex-row gap-2 items-center cursor-pointer justify-center"
       onClick={logoOnClickHandler}
     >
-      <Logo data-testid="have-class-logo" className="logo mx-auto h-6 w-auto" />
+      <Logo data-testid="have-class-logo" className="logo h-6 w-6" />
       <span className="text-lg font-bold">Listify</span>
     </div>
   )

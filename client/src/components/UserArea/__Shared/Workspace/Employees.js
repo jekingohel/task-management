@@ -1,7 +1,14 @@
 import { useState } from "react"
-import ReactSelect, { components } from "react-select"
+
 import EmployeesOptions from "configs/EmployeesOptions"
-import clsx from "clsx"
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "components/__Shared/Select"
 
 const Employees = function ({ ngn }) {
   const [employeesSelectedOption, setEmployeesSelectedOption] = useState(null)
@@ -18,14 +25,18 @@ const Employees = function ({ ngn }) {
   }
 
   return (
-    <ReactSelect
-      value={employeesSelectedOption}
-      onChange={onChangeHandlerEmployees}
-      options={EmployeesOptions}
-      //className="cf-react-select rounded-md border border-input"
-
-      //classNamePrefix="cf-select"
-    />
+    <Select onValueChange={onChangeHandlerEmployees}>
+      <SelectTrigger className="w-full">
+        <SelectValue placeholder="Select" />
+      </SelectTrigger>
+      <SelectContent>
+        {EmployeesOptions.map((employee, index) => (
+          <SelectItem key={index} value={employee.value}>
+            {employee.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   )
 }
 
