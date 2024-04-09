@@ -23,6 +23,12 @@ const validateUpdateTask = [
     .not()
     .isEmpty()
     .withMessage('IS_EMPTY'),
+  check('order')
+    .exists()
+    .withMessage('MISSING')
+    .not()
+    .isEmpty()
+    .withMessage('IS_EMPTY'),
   check('id')
     .exists()
     .withMessage('MISSING')

@@ -136,3 +136,49 @@ export const SharedGlobalReset = function (items) {
     type: actionType.ACTION_SHARED_GLOBAL_RESET
   }
 }
+
+// ----------------------------------------------------------------------------------------------------
+// Tasks
+// ----------------------------------------------------------------------------------------------------
+
+export const TasksAddTask = (task) => {
+  return {
+    type: actionType.ACTION_TASKS_ADD_TASK,
+    payload: {
+      task: task
+    }
+  }
+}
+
+export const TasksUpdateTask = (task) => {
+  return {
+    type: actionType.ACTION_TASKS_UPDATE_TASK,
+    payload: {
+      task: task
+    }
+  }
+}
+
+export const TasksRemoveTask = (id) => {
+  return {
+    type: actionType.ACTION_TASKS_REMOVE_TASK,
+    payload: {
+      id: id
+    }
+  }
+}
+
+export const TasksSetCollection = (collection) => {
+  return {
+    type: actionType.ACTION_TASKS_SET_COLLECTION,
+    payload: {
+      collection: collection
+    }
+  }
+}
+
+export const TasksGlobalReset = () => {
+  return {
+    type: actionType.ACTION_TASKS_GLOBAL_RESET
+  }
+}

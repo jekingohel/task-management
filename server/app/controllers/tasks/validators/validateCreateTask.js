@@ -24,7 +24,7 @@ const validateCreateTask = [
     .not()
     .isEmpty()
     .withMessage('IS_EMPTY')
-    .isIn(['todo', 'inprogress', 'done'])
+    .isIn(['todo', 'in-progress', 'done'])
     .withMessage('TASK_NOT_IN_KNOWN_STATUS'),
   (req, res, next) => {
     validateResult(req, res, next)

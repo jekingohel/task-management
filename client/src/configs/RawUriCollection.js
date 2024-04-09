@@ -30,7 +30,10 @@ const RawUriCollection = {
   usersID: "/users/:id",
   me: "/auth/me",
   passwordResets: "/auth/password-resets", // Forgot password
-  passwordResetsToken: "/auth/password-resets/:token"
+  passwordResetsToken: "/auth/password-resets/:token",
+
+  tasks: "/tasks",
+  taskId: "/tasks/:id"
 }
 
 export default RawUriCollection

@@ -45,3 +45,13 @@ export const ACTION_SHARED_MODALS_CONFIRM_CONTENT_ACTION_SHOW =
   "ACTION_SHARED_MODALS_CONFIRM_CONTENT_ACTION_SHOW"
 export const ACTION_SHARED_MODALS_CONFIRM_CONTENT_ACTION_HIDE =
   "ACTION_SHARED_MODALS_CONFIRM_CONTENT_ACTION_HIDE"
+
+// ----------------------------------------------------------------------------------------------------
+// Tasks
+// ----------------------------------------------------------------------------------------------------
+
+export const ACTION_TASKS_ADD_TASK = "ACTION_TASKS_ADD_TASK"
+export const ACTION_TASKS_UPDATE_TASK = "ACTION_TASKS_UPDATE_TASK"
+export const ACTION_TASKS_REMOVE_TASK = "ACTION_TASKS_REMOVE_TASK"
+export const ACTION_TASKS_SET_COLLECTION = "ACTION_TASKS_SET_COLLECTION"
+export const ACTION_TASKS_GLOBAL_RESET = "ACTION_TASKS_GLOBAL_RESET"

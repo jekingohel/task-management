@@ -6,9 +6,9 @@ import { ReactComponent as Plus } from "images/icon-plus.svg"
 import FormatDate from "utils/FormatDate"
 
 import Statistics from "./Statistics"
-import Status from "./Filters/Status"
-import Search from "./Filters/Search"
 import Content from "./Content"
+import TasksHeading from "./TasksHeading"
+import { TaskFilterProvider } from "./TaskFilterContext"
 
 const Tasks = () => {
   const name = useSelector((state) => state.User.name)
@@ -22,21 +22,16 @@ const Tasks = () => {
       </div>
       <Statistics />
       <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-2 justify-between items-center">
-        <div className="space-y-0.5">
-          <h2 className="scroll-m-20 text-xl font-bold mb-0">Tasks</h2>
-          <p className="text-muted-foreground text-sm">
-            You had 2 in-progress and 23 to-do tasks
-          </p>
-        </div>
+        <TasksHeading />
         <div className="flex justify-start md:justify-end gap-2">
-          <Status />
           <Button className="h-9">
             <Plus className="mr-2 h-4 w-4" /> Add Task
           </Button>
         </div>
       </div>
-      <Search />
-      <Content />
+      <TaskFilterProvider>
+        <Content />
+      </TaskFilterProvider>
     </div>
   )
 }

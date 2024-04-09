@@ -1,21 +1,21 @@
-import { statuses } from "../data"
 import { ReactComponent as VerticalMenu } from "images/icon-ellipsis-vertical.svg"
 import { ReactComponent as Drag } from "images/icon-drag.svg"
 import { Checkbox } from "components/UserArea/__Shared/Checkbox"
 import { Badge } from "components/__Shared/Badge"
 import { Button } from "components/__Shared/Button"
 import { Draggable } from "react-beautiful-dnd"
+import { statuses } from "../Statuses"
 
 const SingleTask = ({ task, index }) => {
   let badgeClass = "bg-red-100 text-red-600 hover:bg-red-100"
   if (task.status === "in-progress") {
     badgeClass = "bg-yellow-100 text-yellow-600 hover:bg-yellow-100"
   } else if (task.status === "done") {
-    badgeClass = "bg-green-200 text-green-700 hover:bg-green-200"
+    badgeClass = "bg-green-100 text-green-900 hover:bg-green-100"
   }
   let taskStatus = statuses.find((status) => status.value === task.status)
   return (
-    <Draggable draggableId={task.id} index={index}>
+    <Draggable draggableId={task._id} index={index}>
       {(provided, snapshot) => (
         <div
           ref={provided.innerRef}

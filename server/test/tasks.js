@@ -115,7 +115,7 @@ describe('*********** TASKS ***********', () => {
       const updatedTask = {
         title: faker.random.words(),
         description: faker.lorem.sentence(),
-        status: 'inprogress'
+        status: 'in-progress'
       }
       chai
         .request(server)

@@ -4,8 +4,9 @@ import Log from "utils/Log"
 
 import GetUser from "requests/GetUser"
 
-import { RequestsReady, UserSetData } from "store/actions"
+import { RequestsReady, TasksSetCollection, UserSetData } from "store/actions"
 import GetAuthUser from "requests/GetAuthUser"
+import GetTasks from "requests/GetTasks"
 
 const Init = async function (params) {
   Log.req("Init()")
@@ -44,6 +45,28 @@ const Init = async function (params) {
   }
 
   // *** Users Tasks
+  let payloadData = {
+    fields: "title,description,status,createdAt,order",
+    page: 1,
+    limit: 10,
+    sort: "order",
+    order: 1
+  }
+  await GetTasks(payloadData)
+    .then((res) => {
+      Store.dispatch(TasksSetCollection(res.data))
+    })
+    .catch((err) => {
+      // console.dir(err)
+      error = err
+      if (err.code !== 401) {
+        // ...
+      }
+    })
+
+  if (error.code > 0) {
+    return
+  }
 
   // --------------------------------------------------------------------------------
   // Asynchronous requests
