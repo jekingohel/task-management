@@ -11,10 +11,12 @@ const Offline = function () {
   }, [])
 
   return (
-    <div className="d-flex justify-content-center flex-column align-items-center vh-100">
+    <div className="flex justify-center flex-col items-center h-screen">
       <CloudOffline width={150} style={{ fill: "#2881E6" }} />
-      <h1 className="mb-0">You"re Offline</h1>
-      <p className="h5 text-muted">Check your connection and try again!</p>
+      <h1 className="text-2xl font-semibold">You"re Offline</h1>
+      <p className="text-muted-foreground">
+        Check your connection and try again!
+      </p>
     </div>
   )
 }
