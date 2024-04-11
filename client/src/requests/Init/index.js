@@ -48,7 +48,7 @@ const Init = async function (params) {
   let payloadData = {
     fields: "title,description,status,createdAt,order",
     page: 1,
-    limit: 10,
+    limit: 100,
     sort: "order",
     order: 1
   }

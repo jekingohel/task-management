@@ -22,7 +22,7 @@ const UserNav = function () {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[130px] p-1 rounded-sm bg-white">
         <Link
-          to=""
+          to={Uri.uSettings()}
           className="text-sm block px-3 py-2 text-sm hover:bg-accent rounded-sm focus:bg-accent focus:text-accent-foreground"
         >
           Settings

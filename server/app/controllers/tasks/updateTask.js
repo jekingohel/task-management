@@ -13,32 +13,40 @@ const updateTask = async (req, res) => {
     req = matchedData(req)
     const id = await isIDGood(req.id)
     const oldTask = await Task.findOne({ _id: id })
-    const userId = await isIDGood(oldTask.user)
-    if (oldTask.order !== Number(req.order)) {
+    const oldPosition = oldTask.order
+    const newPosition = Number(req.order)
+    const userId = oldTask.user
+    if (oldPosition !== newPosition) {
       // Update the order of the dragged task
-      oldTask.order = Number(req.order)
+      oldTask.order = newPosition
       await oldTask.save()
 
-      // Find tasks with order greater than the dragged task's original order
-      // and less than or equal to the new order
-      const tasksToUpdate = await Task.find({
-        _id: { $ne: id }, // Exclude the dragged task
-        user: userId
-        //order: { $gte: Number(req.order) } // Tasks to update
-      })
+      if (oldPosition > newPosition) {
+        // Update order from newPos to oldPos
+        const tasksToUpdateLower = await Task.find({
+          _id: { $ne: id }, // Exclude the dragged task
+          user: userId,
+          order: { $lte: oldPosition, $gte: newPosition }
+        })
 
-      // Increment the order of these tasks by one
-      let plusOrder = Number(req.order) + 1
-      let minusOrder = Number(req.order) - 1
-      for (const task of tasksToUpdate) {
-        if (task.order > Number(req.order)) {
-          task.order = plusOrder
-        } else if (task.order < Number(req.order)) {
-          task.order = minusOrder
+        let order = newPosition + 1
+        for (const task of tasksToUpdateLower) {
+          task.order = order
+          await task.save()
+          order++
         }
-        await task.save()
-        plusOrder++
-        minusOrder--
+      } else if (oldPosition < newPosition) {
+        const tasksToUpdateUpper = await Task.find({
+          _id: { $ne: id }, // Exclude the dragged task
+          user: userId,
+          order: { $lte: Number(req.order) } // Tasks to update
+        })
+        let order = 1
+        for (const task of tasksToUpdateUpper) {
+          task.order = order
+          await task.save()
+          order++
+        }
       }
     }
     res.status(200).json(await updateItem(id, Task, req))

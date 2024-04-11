@@ -171,7 +171,7 @@ const generateFakeTasks = () => {
       title: task.title,
       description: task.description,
       status: task.status, // Random status
-      user: userData[index % userData.length]._id, // Use user ID from provided data
+      user: userData[0]._id, // Use user ID from provided data
       order: index + 1, // Incremental order number starting from 1
       createdAt: faker.date.past(), // Random past date
       updatedAt: faker.date.recent() // Random recent date

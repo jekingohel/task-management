@@ -1,5 +1,4 @@
 const DateGetMonthName = function (monthNumber) {
-
   switch (monthNumber) {
     case 1:
       return "January"

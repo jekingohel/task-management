@@ -9,8 +9,8 @@ const Password = function ({ form }) {
   const [passwordVisible, setPasswordVisible] = useState(false)
 
   const className = showErrorMessage
-    ? "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-sm is-invalid"
-    : "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-sm"
+    ? "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 is-invalid"
+    : "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
   const inputType = passwordVisible ? "text" : "password"
 
   const onChangePasswordValue = function (ev) {
@@ -39,11 +39,10 @@ const Password = function ({ form }) {
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-auto">
       <input
         type={inputType}
         className={className}
-        id="password"
         autoComplete="off"
         value={value}
         onChange={onChangePasswordValue}
@@ -51,7 +50,7 @@ const Password = function ({ form }) {
       <button
         onClick={onClickToggleShowPassword}
         type="button"
-        className="absolute top-0 end-0 p-2.5 rounded-e-md dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+        className="absolute top-0 right-0 end-0 p-2.5 rounded-e-md dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
       >
         {passwordVisible ? (
           <ShowPasswordIcon className="w-5" />

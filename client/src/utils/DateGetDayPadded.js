@@ -1,5 +1,4 @@
 const DateGetDayPadded = function (day) {
-
   if (day < 10) {
     return `0${day}`
   }

@@ -10,9 +10,9 @@ const Statistics = () => {
   const done = Object.values(tasks).filter((task) => task.status === "done")
   return (
     <div className="grid gap-4 grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 justify-stretch mb-5">
-      <Box title="To Do Tasks" count={todo.length} color="red" />
-      <Box title="In Progress Tasks" count={inProgress.length} color="yellow" />
-      <Box title="Done Tasks" count={done.length} color="green" />
+      <Box title="To Do" count={todo.length} color="red" />
+      <Box title="In Progress" count={inProgress.length} color="yellow" />
+      <Box title="Done" count={done.length} color="green" />
     </div>
   )
 }

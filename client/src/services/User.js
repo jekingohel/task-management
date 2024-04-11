@@ -9,14 +9,8 @@ const User = (() => {
   ret.email = () => {
     return Store.getState().User.email
   }
-  ret.fullName = () => {
-    return Store.getState().User.full_name
-  }
-  ret.firstName = () => {
-    return Store.getState().User.first_name
-  }
-  ret.lastName = () => {
-    return Store.getState().User.last_name
+  ret.name = () => {
+    return Store.getState().User.name
   }
 
   return ret

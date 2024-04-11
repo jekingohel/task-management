@@ -5,16 +5,7 @@ const { check } = require('express-validator')
  * Validates change password request
  */
 const validateChangePassword = [
-  check('oldPassword')
-    .optional()
-    .not()
-    .isEmpty()
-    .withMessage('IS_EMPTY')
-    .isLength({
-      min: 5
-    })
-    .withMessage('PASSWORD_TOO_SHORT_MIN_5'),
-  check('newPassword')
+  check('password')
     .optional()
     .not()
     .isEmpty()

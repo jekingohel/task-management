@@ -74,21 +74,15 @@ container[actionType.ACTION_TASKS_ADD_TASK] = function (state, payload) {
 
 container[actionType.ACTION_TASKS_UPDATE_TASK] = function (state, payload) {
   const properties = Object.keys(payload.task)
+
   for (let key of properties) {
     state.collection[payload.task._id][key] = payload.task[key]
   }
 
-  // delete the id key
-  Object.values(state.collection).forEach(function (item, index) {
-    if (item._id) {
-      delete item["_id"]
-    }
-  })
-
-  // next line will inform redux about this change
-  state.collection = {
-    ...sortTasksObject(state.collection)
-  }
+  // // next line will inform redux about this change
+  // state.collection = {
+  //   ...sortTasksObject(state.collection)
+  // }
 
   return {
     ...state

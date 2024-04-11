@@ -1,7 +1,6 @@
 import { useRef } from "react"
 
 import Comm from "services/Comm"
-import Res from "services/Resources"
 import Auth from "services/Auth"
 import Uri from "services/Uri"
 import ValEmail from "utils/form/validations/Email"
@@ -13,13 +12,15 @@ import Error from "components/__Shared/Error"
 import Label from "components/__Shared/Label"
 import Password from "components/__Shared/Input/Password"
 import InputText from "components/__Shared/Input/InputText"
+import AddMinutesToTimestamp from "utils/AddMinutesToTimestamp"
+import Store from "store"
+import { AuthSetSigned } from "store/actions"
+
+const MINUTES_TO_CHECK_FOR_TOKEN_REFRESH = 1440
 
 const Form = function () {
   const form = useRef({
-    first_name: {
-      error: {}
-    },
-    last_name: {
+    name: {
       error: {}
     },
     email: {
@@ -34,13 +35,12 @@ const Form = function () {
   const onSubmitHandler = function (ev) {
     ev.preventDefault()
 
-    const first_name = form.current.first_name.getValue()
-    const last_name = form.current.last_name.getValue()
+    const name = form.current.name.getValue()
     const email = form.current.email.getValue()
     const password = form.current.password.getValue()
 
     // validation
-    if (ValidateForm(form, first_name, last_name, email, password)) {
+    if (ValidateForm(form, name, email, password)) {
       return
     }
 
@@ -48,11 +48,10 @@ const Form = function () {
 
     // api request
     Comm.request({
-      url: Uri.users(),
+      url: Uri.register(),
       method: "post",
       data: {
-        first_name,
-        last_name,
+        name,
         email,
         password
       }
@@ -68,11 +67,23 @@ const Form = function () {
             password: password
           }
         })
-          .then((response) => {
-            // console.dir(response)
-            if (response.data?.data?.user_id) {
-              Auth.setUserID(response.data.data.user_id)
-              Auth.signIn()
+          .then((res) => {
+            if (res.status === 200) {
+              window.localStorage.setItem("user", JSON.stringify(res.data.user))
+              window.localStorage.setItem(
+                "token",
+                JSON.stringify(res.data.token)
+              )
+              window.localStorage.setItem(
+                "tokenExpiration",
+                JSON.stringify(
+                  AddMinutesToTimestamp(MINUTES_TO_CHECK_FOR_TOKEN_REFRESH)
+                )
+              )
+              if (res.data?.user._id) {
+                Auth.setUserID(res.data?.user._id)
+                Store.dispatch(AuthSetSigned())
+              }
             }
           })
           .catch((error) => {
@@ -80,24 +91,11 @@ const Form = function () {
           })
       })
       .catch((error) => {
-        //console.dir(error)
         if (error.response?.data?.errors) {
           const errors = error.response.data.errors
-          if (errors.first_name) {
-            form.current.first_name.showErrorMessage()
-            form.current.first_name.error.showError(errors.first_name[0])
-          }
-          if (errors.last_name) {
-            form.current.last_name.showErrorMessage()
-            form.current.last_name.error.showError(errors.last_name[0])
-          }
-          if (errors.email) {
+          if (errors.msg === "EMAIL_ALREADY_EXISTS") {
             form.current.email.showErrorMessage()
-            form.current.email.error.showError(errors.email[0])
-          }
-          if (errors.password) {
-            form.current.password.showErrorMessage()
-            form.current.password.error.showError(errors.password[0])
+            form.current.email.error.showError("Email already exists")
           }
         }
         form.current.submit.setEnabled()
@@ -108,41 +106,20 @@ const Form = function () {
     <form className="space-y-4" onSubmit={onSubmitHandler}>
       <div>
         <Label
-          title="First name"
-          htmlFor="first-name"
+          title="Name"
+          htmlFor="name"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         />
         <div className="mt-2">
           <InputText
-            form={form.current.first_name}
-            id="first-name"
-            name="first_name"
-            title="First name"
+            form={form.current.name}
+            id="name"
+            name="name"
+            title="Name"
             focus={true}
           />
           <Error
-            ngn={form.current.first_name.error}
-            showClasses="text-sm font-medium text-red-500"
-            hideClasses="text-sm font-medium text-red-500 hidden"
-          />
-        </div>
-      </div>
-
-      <div>
-        <Label
-          title="Last name"
-          htmlFor="last-name"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        />
-        <div className="mt-2">
-          <InputText
-            form={form.current.last_name}
-            id="last-name"
-            name="last_name"
-            title="Last name"
-          />
-          <Error
-            ngn={form.current.last_name.error}
+            ngn={form.current.name.error}
             showClasses="text-sm font-medium text-red-500"
             hideClasses="text-sm font-medium text-red-500 hidden"
           />
@@ -196,68 +173,41 @@ const Form = function () {
   )
 }
 
-const ValidateForm = (form, first_name, last_name, email, password) => {
+const ValidateForm = (form, name, email, password) => {
   let error_found = false
 
-  if (!ValString(first_name) || !ValStringMin(first_name, 1)) {
-    form.current.first_name.showErrorMessage()
-    form.current.first_name.error.showError("The first name field is required.")
+  if (!ValString(name) || !ValStringMin(name, 1)) {
+    form.current.name.showErrorMessage()
+    form.current.name.error.showError("The first name field is required.")
     error_found = true
-  } else if (
-    !ValStringMin(first_name, Res.getValidationRule("user.first_name.min"))
-  ) {
-    form.current.first_name.showErrorMessage()
-    form.current.first_name.error.showError(
+  } else if (!ValStringMin(name, 2)) {
+    form.current.name.showErrorMessage()
+    form.current.name.error.showError(
       "The first name must be at least 2 characters."
     )
     error_found = true
-  } else if (
-    !ValStringMax(first_name, Res.getValidationRule("user.first_name.max"))
-  ) {
-    form.current.first_name.showErrorMessage()
-    form.current.first_name.error.showError(
+  } else if (!ValStringMax(name, 24)) {
+    form.current.name.showErrorMessage()
+    form.current.name.error.showError(
       "The first name must not be greater than 24 characters."
     )
     error_found = true
   } else {
-    form.current.first_name.hideErrorMessage()
-    form.current.first_name.error.hideError()
+    form.current.name.hideErrorMessage()
+    form.current.name.error.hideError()
   }
-  if (!ValString(last_name) || !ValStringMin(last_name, 1)) {
-    form.current.last_name.showErrorMessage()
-    form.current.last_name.error.showError("The last name field is required.")
-    error_found = true
-  } else if (
-    !ValStringMin(last_name, Res.getValidationRule("user.last_name.min"))
-  ) {
-    form.current.last_name.showErrorMessage()
-    form.current.last_name.error.showError(
-      "The last name must be at least 2 characters."
-    )
-    error_found = true
-  } else if (
-    !ValStringMax(last_name, Res.getValidationRule("user.last_name.max"))
-  ) {
-    form.current.last_name.showErrorMessage()
-    form.current.last_name.error.showError(
-      "The last name must not be greater than 24 characters."
-    )
-    error_found = true
-  } else {
-    form.current.last_name.hideErrorMessage()
-    form.current.last_name.error.hideError()
-  }
+
   if (!ValString(email) || !ValStringMin(email, 1)) {
     form.current.email.showErrorMessage()
     form.current.email.error.showError("The email field is required.")
     error_found = true
-  } else if (!ValStringMin(email, Res.getValidationRule("user.email.min"))) {
+  } else if (!ValStringMin(email, 3)) {
     form.current.email.showErrorMessage()
     form.current.email.error.showError(
       "The email must be at least 3 characters."
     )
     error_found = true
-  } else if (!ValStringMax(email, Res.getValidationRule("user.email.max"))) {
+  } else if (!ValStringMax(email, 255)) {
     form.current.email.showErrorMessage()
     form.current.email.error.showError(
       "The email must not be greater than 255 characters."
@@ -273,21 +223,18 @@ const ValidateForm = (form, first_name, last_name, email, password) => {
     form.current.email.hideErrorMessage()
     form.current.email.error.hideError()
   }
+
   if (!ValString(password) || !ValStringMin(password, 1)) {
     form.current.password.showErrorMessage()
     form.current.password.error.showError("The password field is required.")
     error_found = true
-  } else if (
-    !ValStringMin(password, Res.getValidationRule("user.password.min"))
-  ) {
+  } else if (!ValStringMin(password, 5)) {
     form.current.password.showErrorMessage()
     form.current.password.error.showError(
-      "The password must be at least 8 characters."
+      "The password must be at least 5 characters."
     )
     error_found = true
-  } else if (
-    !ValStringMax(password, Res.getValidationRule("user.password.max"))
-  ) {
+  } else if (!ValStringMax(password, 32)) {
     form.current.password.showErrorMessage()
     form.current.password.error.showError(
       "The password must not be greater than 32 characters."

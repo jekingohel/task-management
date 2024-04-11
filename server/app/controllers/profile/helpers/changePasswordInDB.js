@@ -17,7 +17,7 @@ const changePasswordInDB = (id = '', req = {}) => {
         await itemNotFound(err, user, 'NOT_FOUND')
 
         // Assigns new password to user
-        user.password = req.newPassword
+        user.password = req.password
 
         // Saves in DB
         user.save((error) => {

@@ -5,6 +5,7 @@ import Uri from "services/Uri"
 import Req from "requests"
 import Header from "./__Shared/Header"
 import Tasks from "./Tasks"
+import Settings from "./Settings"
 
 const UserArea = () => {
   const isEmpty = !!useMatch(Uri.u())
@@ -26,6 +27,7 @@ const UserArea = () => {
         <Routes>
           {/* these have to be in a separate Route because of the structure of the page itself. It is outside the actual workspace container but still requires user credentials. */}
           <Route path={`${Uri.default()}`} element={<Tasks />} />
+          <Route path={`${Uri.settings()}/*`} element={<Settings />} />
         </Routes>
       </div>
     </div>

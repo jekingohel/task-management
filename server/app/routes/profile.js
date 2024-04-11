@@ -51,7 +51,7 @@ router.patch(
  * Change password route
  */
 router.post(
-  '/changePassword',
+  '/change-password',
   requireAuth,
   roleAuthorization(['user', 'admin']),
   trimRequest.all,
