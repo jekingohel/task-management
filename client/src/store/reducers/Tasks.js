@@ -80,9 +80,9 @@ container[actionType.ACTION_TASKS_UPDATE_TASK] = function (state, payload) {
   }
 
   // // next line will inform redux about this change
-  // state.collection = {
-  //   ...sortTasksObject(state.collection)
-  // }
+  state.collection = {
+    ...sortTasksObject(state.collection)
+  }
 
   return {
     ...state

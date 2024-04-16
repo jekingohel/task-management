@@ -35,10 +35,7 @@
     "prettier": "prettier --write --config .prettierrc.json \"**/*.js\""
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
+    
     "rules": {
       "no-console": "off",
       "strict": [

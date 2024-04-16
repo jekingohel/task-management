@@ -16,23 +16,11 @@ const SingleTask = ({ task, index, ngn }) => {
   } else if (task.status === "done") {
     badgeClass = "bg-green-100 text-green-900 hover:bg-green-100"
   }
+
   let taskStatus = statuses.find((status) => status.value === task.status)
 
-  const [checked, setChecked] = useState(task.status === "done")
-  const [status, setStatus] = useState(taskStatus.label)
-  const [badgeClassState, setBadgeClassState] = useState(badgeClass)
-
   const handleChecked = () => {
-    let isChecked = !checked
-    setChecked(isChecked)
-    if (isChecked) {
-      setStatus("Done")
-      setBadgeClassState("bg-green-100 text-green-900 hover:bg-green-100")
-    } else {
-      setStatus("Todo")
-      setBadgeClassState("bg-red-100 text-red-600 hover:bg-red-100")
-    }
-    // Call API to update the status
+    let isChecked = task.status !== "done"
     const updatedTasks = { ...task, status: isChecked ? "done" : "todo" }
     UpdateTask(updatedTasks).then(() => {
       Store.dispatch(TasksUpdateTask(updatedTasks))
@@ -56,12 +44,12 @@ const SingleTask = ({ task, index, ngn }) => {
               <Checkbox
                 onCheckedChange={handleChecked}
                 id={`task-${index}`}
-                checked={checked}
+                checked={task.status === "done"}
               />
               <div className="flex flex-col space-y-1">
                 <label
                   htmlFor={`task-${index}`}
-                  className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${checked ? "line-through" : ""}`}
+                  className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${ task.status === "done"  ? "line-through" : ""}`}
                 >
                   {task.title}
                 </label>
@@ -71,7 +59,7 @@ const SingleTask = ({ task, index, ngn }) => {
               </div>
             </div>
             <div className="flex items-center space-x-1 shrink-0">
-              <Badge className={badgeClassState}>{status}</Badge>
+              <Badge className={badgeClass}>{taskStatus?.label}</Badge>
               <Actions task={task} ngn={ngn} />
             </div>
           </div>
