@@ -90,8 +90,8 @@ container[actionType.ACTION_TASKS_UPDATE_TASK] = function (state, payload) {
 }
 
 container[actionType.ACTION_TASKS_REMOVE_TASK] = function (state, payload) {
-  if (state.collection[payload._id]) {
-    delete state.collection[payload._id]
+  if (state.collection[payload.id]) {
+    delete state.collection[payload.id]
   }
 
   state.collection = {

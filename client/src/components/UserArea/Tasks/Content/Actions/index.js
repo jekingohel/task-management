@@ -7,6 +7,9 @@ import {
 import DropDownMenuCloser from "events/DropDownMenuCloser"
 
 import { ReactComponent as VerticalMenu } from "images/icon-ellipsis-vertical.svg"
+import Requests from "requests"
+import Store from "store"
+import { TasksRemoveTask } from "store/actions"
 
 const Actions = ({ task, ngn }) => {
   const onClickHandler = function () {
@@ -18,7 +21,10 @@ const Actions = ({ task, ngn }) => {
     ngn.modal.show()
     ngn.data.set(task)
   }
-  const handleOnClickDelete = (task) => {}
+  const handleOnClickDelete = (task) => {
+    Store.dispatch(TasksRemoveTask(task._id))
+    Requests.DeleteTask(task._id)
+  }
   return (
     <DropDownMenu>
       <DropdownMenuTrigger onClick={onClickHandler}>

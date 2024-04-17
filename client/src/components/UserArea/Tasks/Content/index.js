@@ -92,12 +92,13 @@ const Content = () => {
             )}
           </Droppable>
         </DragDropContext>
-        {tasks.length === 0 && (
-          <p className="text-muted-foreground text-sm">
-            No tasks are found matching your criteria
-          </p>
-        )}
       </div>
+      {tasks.length === 0 && (
+        <p className="text-muted-foreground text-sm text-center">
+          No tasks are found matching your criteria, Click on Add Task button to
+          add new task
+        </p>
+      )}
     </>
   )
 }

@@ -7,6 +7,7 @@ import AddTask from "requests/AddTask"
 import UpdateProfile from "requests/UpdateProfile"
 import GetRefreshToken from "requests/GetRefreshToken"
 import UpdatePassword from "requests/UpdatePassword"
+import DeleteTask from "requests/DeleteTask"
 
 const Requests = {
   Init,
@@ -17,7 +18,8 @@ const Requests = {
   AddTask,
   UpdateProfile,
   GetRefreshToken,
-  UpdatePassword
+  UpdatePassword,
+  DeleteTask
 }
 
 export default Requests
